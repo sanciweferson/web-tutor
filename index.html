@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web tutor</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    
+   <header class="header">
+       <nav-bar></nav-bar>
+   </header>
+
+      <main id="app">
+    
+        <section>
+        lorem9000
+
+        </section>
+        <section>
+        
+        </section>
+        <section id="servicos">
+  <h2>Serviços</h2>
+  <p>Conteúdo dos serviços...</p>
+ 
+</section>
+
+
+      </main>
+      <button id="btn-top" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 100 100">
+    <!-- círculo de fundo -->
+    <circle class="bg" cx="50" cy="50" r="45" />
+
+    <!-- círculo de progresso -->
+    <circle class="progress" cx="50" cy="50" r="45" />
+
+    <!-- seta -->
+    <path class="arrow" d="M50 30 L35 50 L45 50 L45 70 L55 70 L55 50 L65 50 Z" />
+  </svg>
+</button>
+      <footer-bar></footer-bar>
+       <!-- <script src="js/scroll/index.js" ></script> -->
+      <script src="js/layout/layout.js"></script>
+      <script src="js/rout/rout.js"></script>
+
+
+       <script type="module">
+      import { initMenu } from "./js/mobile/menuEvents.js"
+      import { initTheme } from "./js/theme/theme.init.js"
+
+      window.onload = () => {
+        initTheme()
+        initMenu() // agora vai abrir o menu corretamente se estava aberto antes
+      }
+    </script>
+    <script>
+      const darkMode = localStorage.getItem("darkMode")
+      const isDark =
+        darkMode === "true" ||
+        (darkMode === null &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+
+      document.documentElement.setAttribute(
+        "data-theme",
+        isDark ? "dark" : "light"
+      )
+
+      // Atualiza ícones já na primeira renderização
+      document.addEventListener("DOMContentLoaded", () => {
+        document
+          .querySelectorAll(".icon-moon")
+          .forEach((el) => el.classList.toggle("hidden", isDark))
+        document
+          .querySelectorAll(".icon-sun")
+          .forEach((el) => el.classList.toggle("hidden", !isDark))
+      })
+    </script>
+</body>
+</html>
