@@ -26,6 +26,14 @@ responsividade e acessibilidade**.
 
 ## 📱 Responsividade
 
+## Menu Mobile
+
+O menu mobile é responsivo e funciona ao clicar no botão “hamburger”.  
+Aqui está um exemplo com o menu aberto:
+
+![Menu Mobile Aberto](assets/imag/mobilePrint.jpeg)
+
+
 O layout se adapta para diferentes tamanhos de tela, com: - Menu
 tradicional no desktop\
 - Menu hambúrguer no mobile\
@@ -49,9 +57,9 @@ O projeto aplica conceitos básicos de acessibilidade, como: - Uso de
 1.  Clone o repositório:
 
 ``` bash
-git clone https://github.com/seu-usuario/nome-do-repo.git
+git clone https://github.com/sanciweferson/web-tutor
 ```
-
+ 
 2.  Abra o arquivo `index.html` no navegador\
     ou\
 3.  Use uma extensão como Live Server no VS Code para melhor
