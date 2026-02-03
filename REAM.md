@@ -31,7 +31,16 @@ responsividade e acessibilidade**.
 O menu mobile é responsivo e funciona ao clicar no botão “hamburger”.  
 Aqui está um exemplo com o menu aberto:
 
-![Menu Mobile Aberto](assets/imag/mobilePrint.jpeg)
+## 📱 Menu Mobile
+
+O menu mobile é responsivo e funciona ao clicar no botão **hambúrguer**.  
+
+**Menu Fechado:**  
+![Menu Mobile Fechado](assets/img/mobileFechado.jpeg)
+
+**Menu Aberto:**  
+![Menu Mobile Aberto](assets/img/mobileAberto.jpeg)
+
 
 
 O layout se adapta para diferentes tamanhos de tela, com: - Menu
