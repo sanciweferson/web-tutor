@@ -104,7 +104,15 @@ html {
   text-decoration: none;
 }
 
+/* Remova ou substitua aquele :focus { outline: none; } */
+
+.btn:focus-visible {
+  outline: 3px solid var(--ring); /* Usa a cor de anel que você definiu no root */
+  outline-offset: 4px;
+  border-radius: var(--radius);
+}
 .btn {
+
   display: flex;
   align-items: center;
   justify-content: center;
