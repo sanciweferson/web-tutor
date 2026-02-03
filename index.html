@@ -24,40 +24,67 @@
       href="assets/img/favicon.png"
       type="image/x-icon"
     />
+    <link rel="stylesheet" href="./js/layout/layout.css">
     <link rel="stylesheet" href="style.css">
-   
+  
 </head>
 <body>
-    
-   <header class="header">
-       <nav-bar></nav-bar>
-   </header>
+    <a href="#app" class="skip-link">Pular para o conteúdo principal</a>
+    <header class="header">
+  <nav-bar></nav-bar>
+</header>
 
-      <main id="app">
-    
-      
-        <section>
-        
-        </section>
-        <section id="servicos">
+<main id="app" tabindex="-1">
+  <section class=" hero" aria-labelledby="hero-title">
+    <div class=" container hero-flex">
+      <div class="hero-content">
+        <h1>Crie Seus Próprios Cursos em Vídeo</h1>
+          <p>
+            Mergulhe fundo no mundo da criatividade e aprenda a criar vídeos incríveis que cativam seu público.
+          </p>
+          <a href="#" class="btn">Por R$ 29 - Adquira o Curso</a>
+      </div>
+      <img src="assets/img/header-course.png" alt="Mulher estudando produção de vídeo" />
+    </div>
+
+    <svg class="frame-decoration" aria-hidden="true" focusable="false" ...>
+      ...
+    </svg>
+  </section>
+
+  <section id="servicos" aria-label="Nossos Serviços">
+   
+    </section>
+</main>
+
+
+   
+     
+
+<main id="app" tabindex="-1"> 
+  <section>
+
+  </section>
+
+
+
+<!--   
+  <a href="#" class="link-exemplo">Link no Main</a>
+        <button class="btn-exemplo">Botão no Main</button>
+        <section aria-label="Introdução"></section> -->
+        <section id="servicos" aria-label="Nossos Serviços"></section>
+    </main>
+
+    <button id="btn-top" aria-label="Voltar ao início da página" title="Voltar ao topo">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="bg" cx="50" cy="50" r="45" />
+            <circle class="progress" cx="50" cy="50" r="45" />
+            <path class="arrow" d="M50 30 L35 50 L45 50 L45 70 L55 70 L55 50 L65 50 Z" />
+        </svg>
+    </button>
+
+
  
- 
-</section>
-
-
-      </main>
-      <button id="btn-top" aria-label="Voltar ao topo">
-  <svg viewBox="0 0 100 100">
-    <!-- círculo de fundo -->
-    <circle class="bg" cx="50" cy="50" r="45" />
-
-    <!-- círculo de progresso -->
-    <circle class="progress" cx="50" cy="50" r="45" />
-
-    <!-- seta -->
-    <path class="arrow" d="M50 30 L35 50 L45 50 L45 70 L55 70 L55 50 L65 50 Z" />
-  </svg>
-</button>
       <footer-bar></footer-bar>
        <!-- <script src="js/scroll/index.js" ></script> -->
       <script src="js/layout/layout.js"></script>

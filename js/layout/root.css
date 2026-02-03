@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+:root {
+  /* Fontes: Inter é focada em legibilidade */
+  --font-main:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius: 0.65rem; /* borda arredondada de elementos (bordas de cards, botões, inputs) */
+
+  --background: oklch(1 0 0); /* cor de fundo da página */
+  --foreground: oklch(0.145 0 0); /* cor do texto padrão */
+
+  --card: oklch(1 0 0); /* fundo de cards, blocos de conteúdo */
+  --card-foreground: oklch(0.145 0 0); /* cor do texto dentro dos cards */
+
+  --popover: oklch(1 0 0); /* fundo de popups, menus flutuantes */
+  --popover-foreground: oklch(0.145 0 0); /* cor do texto nos popovers */
+
+  --primary: oklch(
+    0.205 0 0
+  ); /* cor principal da interface, botões principais */
+  --primary-foreground: oklch(
+    0.985 0 0
+  ); /* texto ou ícones sobre a cor primary */
+
+  --secondary: oklch(
+    0.97 0 0
+  ); /* cor secundária da interface, botões secundários */
+  --secondary-foreground: oklch(
+    0.205 0 0
+  ); /* texto ou ícones sobre a cor secondary */
+
+  --muted: oklch(
+    0.97 0 0
+  ); /* elementos menos importantes, como labels secundários */
+  --muted-foreground: oklch(0.556 0 0); /* cor de texto para elementos muted */
+
+  --accent: oklch(0.97 0 0); /* cor de destaque, atenção ou ação */
+  --accent-foreground: oklch(
+    0.205 0 0
+  ); /* texto ou ícones sobre a cor accent */
+
+  --destructive: oklch(
+    0.577 0.245 27.325
+  ); /* ações de alerta ou destrutivas, ex: deletar */
+
+  --border: oklch(0.922 0 0); /* cor das bordas de elementos */
+  --input: oklch(0.922 0 0); /* fundo de campos de input */
+  --ring: oklch(
+    0.708 0 0
+  ); /* efeito de foco (outline) ao redor de inputs ou botões */
+
+  --chart-1: oklch(
+    0.646 0.222 41.116
+  ); /* cores para gráficos ou visualizações */
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  --sidebar: oklch(0.985 0 0); /* fundo da barra lateral */
+  --sidebar-foreground: oklch(0.145 0 0); /* texto na sidebar */
+  --sidebar-primary: oklch(0.205 0 0); /* cor principal dentro da sidebar */
+  --sidebar-primary-foreground: oklch(
+    0.985 0 0
+  ); /* texto sobre a primary da sidebar */
+  --sidebar-accent: oklch(0.97 0 0); /* cor de destaque na sidebar */
+  --sidebar-accent-foreground: oklch(
+    0.205 0 0
+  ); /* texto sobre o accent da sidebar */
+  --sidebar-border: oklch(0.922 0 0); /* borda da sidebar */
+  --sidebar-ring: oklch(0.708 0 0); /* foco/efeito da sidebar */
+}
+
+[data-theme="dark"] body {
+  /* mesmas propriedades, mas invertendo cores pra modo escuro */
+  --background: oklch(0.145 0 0); /* fundo escuro da página */
+  --foreground: oklch(0.985 0 0); /* texto claro */
+
+  --card: oklch(0.205 0 0); /* fundo de cards escuros */
+  --card-foreground: oklch(0.985 0 0); /* texto claro nos cards */
+
+  --popover: oklch(0.205 0 0); /* fundo de popovers escuros */
+  --popover-foreground: oklch(0.985 0 0); /* texto claro nos popovers */
+
+  --primary: oklch(0.922 0 0); /* botão principal claro sobre fundo escuro */
+  --primary-foreground: oklch(0.205 0 0); /* texto escuro sobre botão primary */
+
+  --secondary: oklch(0.269 0 0); /* cor secundária modo dark */
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}

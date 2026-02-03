@@ -1,25 +1,24 @@
-// menuEvents.js
 import {
-  setupMenuToggle as setupToggle,
-  setupMenuStateOnLoad as setupState,
-  setupMenuResizeHandler as setupResize,
-  setupMobileLinkClicks as setupLinks,
-} from "./menuActions.js"
+  setupMenuToggle,
+  setupMenuStateOnLoad,
+  setupMenuResizeHandler,
+  setupMobileLinkClicks
+} from "./menuActions.js";
 
 export const initMenu = () => {
-  // Função que espera os elementos existirem no DOM
-  const waitForMenuElements = setInterval(() => {
-    const toggle = document.getElementById("menu__toggle")
-    const side = document.getElementById("mobile__side")
+  const checkInterval = setInterval(() => {
+    const toggleBtn = document.getElementById("menu__toggle");
+    const sideMenu = document.getElementById("mobile__side");
 
-    if (toggle && side) {
-      // Inicializa todas as funcionalidades do menu
-      setupToggle()
-      setupState()
-      setupResize()
-      setupLinks()
+    if (toggleBtn && sideMenu) {
+      setupMenuToggle();
+      setupMenuStateOnLoad(); // Verifica o localStorage aqui
+      setupMenuResizeHandler();
+      setupMobileLinkClicks();
 
-      clearInterval(waitForMenuElements)
+      clearInterval(checkInterval);
     }
-  }, 50) // checa a cada 50ms
-}
+  }, 50);
+
+  setTimeout(() => clearInterval(checkInterval), 5000);
+};
