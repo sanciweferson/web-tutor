@@ -11,21 +11,36 @@ const handleKeyboardFocus = (e) => {
   const { btn, side } = getMenuElements();
   if (!side || !side.classList.contains("open")) return;
 
-  if (e.key === "Escape") closeSideMenu();
+  if (e.key === "Escape") {
+    closeSideMenu();
+    return;
+  }
 
   if (e.key === "Tab") {
-    // Agora incluímos o botão (btn) na lista de foco do menu aberto
-    const focusables = Array.from(side.querySelectorAll('a[href], button, input, [tabindex]:not([tabindex="-1"])'));
-    focusables.unshift(btn); // Adiciona o botão de fechar como o primeiro elemento do ciclo
+    const focusables = Array.from(
+      side.querySelectorAll('a[href], button, input, [tabindex]:not([tabindex="-1"])')
+    );
+
+    if (focusables.length === 0) return;
 
     const first = focusables[0];
     const last = focusables[focusables.length - 1];
 
+    // Shift + Tab no primeiro item → volta para o botão
     if (e.shiftKey && document.activeElement === first) {
-      last.focus();
+      btn.focus();
       e.preventDefault();
-    } else if (!e.shiftKey && document.activeElement === last) {
+    }
+
+    // Tab no botão → vai para o primeiro link do menu
+    if (!e.shiftKey && document.activeElement === btn) {
       first.focus();
+      e.preventDefault();
+    }
+
+    // Tab no último item → volta para o botão
+    if (!e.shiftKey && document.activeElement === last) {
+      btn.focus();
       e.preventDefault();
     }
   }
@@ -40,14 +55,14 @@ export const openSideMenu = (isInitialLoad = false) => {
   side.removeAttribute("inert");
 
   btn.setAttribute("aria-expanded", "true");
-  btn.innerHTML = "&times;"; // Transforma em X
+  btn.innerHTML = "&times;";
   btn.setAttribute("aria-label", "Fechar menu");
 
   document.addEventListener("keydown", handleKeyboardFocus);
 
   if (!isInitialLoad) {
-    // Foca no botão de fechar (X) logo que abre
-    btn.focus();
+    const firstLink = side.querySelector('a[href], button');
+    (firstLink || btn).focus();
   }
 
   localStorage.setItem("menuOpen", "true");
@@ -57,12 +72,17 @@ export const closeSideMenu = () => {
   const { btn, side } = getMenuElements();
   if (!btn || !side) return;
 
+  // Tira o foco de dentro do menu antes de escondê-lo
+  if (side.contains(document.activeElement)) {
+    btn.focus();
+  }
+
   side.classList.remove("open");
   side.setAttribute("aria-hidden", "true");
   side.setAttribute("inert", "");
 
   btn.setAttribute("aria-expanded", "false");
-  btn.innerHTML = "&#9776;"; // Volta para o Hambúrguer
+  btn.innerHTML = "&#9776;";
   btn.setAttribute("aria-label", "Abrir menu");
 
   document.removeEventListener("keydown", handleKeyboardFocus);
@@ -71,6 +91,7 @@ export const closeSideMenu = () => {
 
 export const setupMenuToggle = () => {
   const { btn, side } = getMenuElements();
+
   btn?.addEventListener("click", () => {
     side.classList.contains("open") ? closeSideMenu() : openSideMenu();
   });
@@ -78,6 +99,7 @@ export const setupMenuToggle = () => {
 
 export const setupMenuStateOnLoad = () => {
   const isMenuOpen = localStorage.getItem("menuOpen") === "true";
+
   if (isMenuOpen && window.innerWidth <= MOBILE_BREAKPOINT) {
     openSideMenu(true);
   } else {
@@ -88,6 +110,7 @@ export const setupMenuStateOnLoad = () => {
 export const setupMenuResizeHandler = () => {
   window.addEventListener("resize", () => {
     const { side } = getMenuElements();
+
     if (window.innerWidth > MOBILE_BREAKPOINT && side?.classList.contains("open")) {
       closeSideMenu();
     }
@@ -96,6 +119,7 @@ export const setupMenuResizeHandler = () => {
 
 export const setupMobileLinkClicks = () => {
   const { side } = getMenuElements();
+
   side?.querySelectorAll("a[href]").forEach(link => {
     link.addEventListener("click", () => closeSideMenu());
   });

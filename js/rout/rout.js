@@ -1,15 +1,16 @@
 function configurarScroll() {
   const header = document.querySelector(".header");
   const sidebar = document.querySelector(".sidebar");
+  const app = document.getElementById("app");
 
-  if (!header) {
+  if (!header || !app) {
     setTimeout(configurarScroll, 50);
     return;
   }
 
   function atualizarEstadoScroll() {
-    // Agora pegamos o scroll da janela global (window)
-    const y = window.scrollY || document.documentElement.scrollTop;
+    const y = app.scrollTop;
+    console.log("scroll do app:", y);
 
     if (y > 10) {
       header.classList.add("scrolled");
@@ -20,38 +21,40 @@ function configurarScroll() {
     }
   }
 
-  // Escuta o scroll da janela toda
-  window.addEventListener("scroll", atualizarEstadoScroll);
+  app.addEventListener("scroll", atualizarEstadoScroll);
   atualizarEstadoScroll();
 }
 
 document.addEventListener("DOMContentLoaded", configurarScroll);
 
 // ===============================
-// BOTÃO VOLTAR AO TOPO + PROGRESSO (Global)
+// BOTÃO VOLTAR AO TOPO + PROGRESSO
+// ===============================
+
+// ===============================
+// BOTÃO VOLTAR AO TOPO + PROGRESSO (SPA com #app rolável)
 // ===============================
 
 const btnTop = document.getElementById("btn-top");
+const appContainer = document.getElementById("app");
 
-if (btnTop) {
+if (btnTop && appContainer) {
   const progressCircle = btnTop.querySelector(".progress");
+
   const radius = 45;
   const circumference = 2 * Math.PI * radius;
 
   progressCircle.style.strokeDasharray = circumference;
 
   function atualizarProgresso() {
-    // Scroll atual da página inteira
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    // Altura total rolável da página menos a altura da tela visível
-    const alturaTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollTop = appContainer.scrollTop;
+    const altura = appContainer.scrollHeight - appContainer.clientHeight;
 
-    const progresso = alturaTotal > 0 ? scrollTop / alturaTotal : 0;
+    const progresso = altura > 0 ? scrollTop / altura : 0;
     const offset = circumference - progresso * circumference;
 
     progressCircle.style.strokeDashoffset = offset;
 
-    // Mostra o botão após descer 200px
     if (scrollTop > 200) {
       btnTop.classList.add("show");
     } else {
@@ -60,16 +63,19 @@ if (btnTop) {
   }
 
   btnTop.addEventListener("click", () => {
-    // Rola a janela para o topo
-    window.scrollTo({
+    appContainer.scrollTo({
       top: 0,
       behavior: "smooth"
     });
   });
 
-  window.addEventListener("scroll", atualizarProgresso);
+  appContainer.addEventListener("scroll", atualizarProgresso);
+
+  // inicializa o estado
   atualizarProgresso();
 }
+
+
 
 let app;
 let homeHTML;
