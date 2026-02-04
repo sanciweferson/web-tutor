@@ -168,6 +168,7 @@ padding: 0rem 0rem;}
   font-size: 1.25rem;
 }
 
+
 @media(min-width:700px) {
   .topics {
     display: grid;

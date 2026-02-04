@@ -1,15 +1,58 @@
 // ---------- templates ----------
+
+
+const ICONS = {
+  home: `
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3 2 12h3v9h6v-6h2v6h6v-9h3z"/>
+    </svg>
+  `,
+  list: `
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h18v2H3z"/>
+    </svg>
+  `,
+  text: `
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 5h16v2H4zm0 4h16v2H4zm0 4h10v2H4z"/>
+    </svg>
+  `,
+  bulb: `
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 21h6v-1H9zm3-20C7.935 1 5 3.935 5 7c0 2.386 1.19 4.486 3 5.74V17h8v-4.26c1.81-1.254 3-3.354 3-5.74 0-3.065-2.935-6-7-6z"/>
+    </svg>
+  `,
+  user: `
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.418 0-8 2.239-8 5v3h16v-3c0-2.761-3.582-5-8-5z"/>
+    </svg>
+  `,
+  mail: `
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M2 4h20v16H2zm10 7L4 6v12h16V6z"/>
+    </svg>
+  `,
+  facebook: `
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.5c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
+    </svg>
+  `,
+  instagram: `
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm6-1a1 1 0 1 0-1 1 1 1 0 0 0 1-1z"/>
+    </svg>
+  `
+};
 function menuItemMobile({ href, icon, text, extraClass = "" }) {
   return `
     <li class="nav__item">
       <a href="${href}" class="menu__link ${extraClass}">
-        <i class="icon ${icon}" aria-hidden="true"></i>
+        ${ICONS[icon]}
         <span>${text}</span>
       </a>
     </li>
   `;
 }
-
 function menuItemDesktop({ href, text, extraClass = "" }) {
   return `
     <li class="nav__item">
@@ -19,13 +62,12 @@ function menuItemDesktop({ href, text, extraClass = "" }) {
     </li>
   `;
 }
-
 function socialItem({ href, icon, text }) {
   const networkClass = text.toLowerCase();
   return `
     <li class="nav__item">
       <a href="${href}" class="menu__link link__primary ${networkClass}" target="_blank" rel="noopener" aria-label="${text}">
-        <i class="icon ${icon}" aria-hidden="true"></i>
+        ${ICONS[icon]}
         <span class="sr-only">${text}</span>
       </a>
     </li>
@@ -34,18 +76,19 @@ function socialItem({ href, icon, text }) {
 
 // ---------- dados base ----------
 const navLinks = [
-  { id: "home", href: "/index.html", text: "Home", icon: "fa-solid fa-house" },
-  { id: "chapters", href: "/index.html#chapters", text: "Chapters", icon: "fa-solid fa-list" },
-  { id: "summary", href: "/index.html#summary", text: "Summary", icon: "fa-solid fa-align-left" },
-  { id: "takeaways", href: "/index.html#takeaways", text: "Takeaways", icon: "fa-solid fa-lightbulb" },
-  { id: "author", href: "/index.html#author", text: "Author", icon: "fa-solid fa-user" },
-  { id: "contato", href: "/index.html?pagina=contato", text: "Contato", icon: "fa-solid fa-envelope" }
+  { id: "home", href: "/index.html", text: "Home", icon: "home" },
+  { id: "chapters", href: "/index.html#chapters", text: "Chapters", icon: "list" },
+  { id: "summary", href: "/index.html#summary", text: "Summary", icon: "text" },
+  { id: "takeaways", href: "/index.html#takeaways", text: "Takeaways", icon: "bulb" },
+  { id: "author", href: "/index.html#author", text: "Author", icon: "user" },
+  { id: "contato", href: "/index.html?pagina=contato", text: "Contato", icon: "mail" }
 ];
 
 const socialItems = [
-  { href: "https://www.facebook.com/", icon: "fa-brands fa-facebook", text: "Facebook" },
-  { href: "https://www.instagram.com/", icon: "fa-brands fa-instagram", text: "Instagram" }
+  { href: "https://www.facebook.com/", icon: "facebook", text: "" },
+  { href: "https://www.instagram.com/", icon: "instagram", text: "" }
 ];
+ 
 
 // ---------- componente NAV ----------
 class NavBar extends HTMLElement {
@@ -116,18 +159,26 @@ class NavBar extends HTMLElement {
 }
 customElements.define("nav-bar", NavBar);
 
+
+
 class FooterBar extends HTMLElement {
   connectedCallback() {
     const year = new Date().getFullYear();
     const footerLinks = navLinks
-      .filter(link => ["home", "chapters", "summary", "takeaways", "author", "contato"].includes(link.id))
-      .map(link => `<a href="${link.href}" class="footer-link"><i class="icon ${link.icon}" aria-hidden="true"></i> ${link.text}</a>`)
+      .map(link => `
+        <a href="${link.href}" class="footer-link">
+          ${ICONS[link.icon]}
+          <span>${link.text}</span>
+        </a>
+      `)
       .join(" ");
 
     this.innerHTML = `
       <footer class="footer">
         <nav class="footer-nav">${footerLinks}</nav>
-        <div class="footer-copy"><span>© ${year} • Feito com JavaScript puro</span></div>
+        <div class="footer-copy">
+          <span>© ${year} • Feito com JavaScript puro</span>
+        </div>
       </footer>
     `;
   }
