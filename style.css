@@ -1,11 +1,20 @@
-
 @import "root.css";
 
-
-/* --- Reset e Estrutura Global --- */
+/* --------------------------
+   RESET & GLOBAL
+--------------------------- */
 html {
   scroll-behavior: smooth;
-  height: auto; /* Garante que não fique travado */
+  height: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--chart-1) transparent;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--chart-1);
+  border-radius: 10px;
 }
 
 body {
@@ -19,100 +28,73 @@ body {
   font-family: var(--font-main);
   overflow-x: hidden;
 }
-
-/* --- Barra de Rolagem (Scrollbar) --- */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--chart-1) transparent;
+/* heading-border */
+.heading-border{
+  width: 100px;
+  height: 3px;
+  background-color: var(--chart-3);
 }
+#app { flex: 1; 
+padding: 0rem 0rem;}
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--chart-1, #FF0000);
-  border-radius: 10px;
-}
-
-/* --- Conteúdo Principal (#app) --- */
-#app {
-  flex: 1;
-  /* Espaço para o header não cobrir o conteúdo */
-  /* padding-top: 5rem;  */
-}
-
-
+/* --------------------------
+   HERO SECTION
+--------------------------- */
 .hero {
-  background: #000 url('assets/img/header-background.jpg') center center/cover
-    no-repeat;
+  background: #000 url('assets/img/header-background.jpg') center/cover no-repeat;
   padding: 11.5rem 2rem 8rem;
-  color: #fff;
+  color: var(--foreground);
   overflow-x: hidden;
   position: relative;
 }
 
-.hero-flex img{
-  max-width: 100%;
-}
-.hero-flex{
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: self-start;
-  gap: 4rem;
-}
-
-
-/* Hero Mobile */
 .hero-flex {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 4rem;
   padding: 0 1rem;
+}
+
+.hero-flex img { max-width: 100%; }
+
+.hero .frame-decoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+   height: 100px; 
 }
 
 .hero-flex h1 {
   color: var(--chart-3);
-  line-height: 1.1; /* Aumentado levemente para não encostar as letras */
+  line-height: 1.1;
   font-weight: 900;
-  font-size: clamp(2rem, 8vw, 2.75rem); /* Tamanho responsivo automático */
+  font-size: clamp(2rem, 8vw, 2.75rem);
   margin-bottom: 0.5rem;
-  letter-spacing: -0.02em; /* Toque de design moderno */
+  letter-spacing: -0.02em;
 }
 
 .hero-flex p {
   margin-top: 1.25rem;
-  font-size: 1.15rem; /* Um pouco menor para mobile fica mais elegante */
+  font-size: 1.15rem;
   line-height: 1.6;
   font-weight: 500;
-  color: var(--foreground); /* Melhor legibilidade que o popover-fg */
+  color: var(--foreground);
   max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .hero-content a {
-  width: 100%; /* Botão ocupa a largura disponível no mobile */
+  width: 100%;
   max-width: 300px;
   margin: 2rem auto;
   display: inline-block;
   text-decoration: none;
 }
 
-/* Remova ou substitua aquele :focus { outline: none; } */
-
-.btn:focus-visible {
-  outline: 3px solid var(--ring); /* Usa a cor de anel que você definiu no root */
-  outline-offset: 4px;
-  border-radius: var(--radius);
-}
+/* BOTÕES */
 .btn {
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,67 +102,149 @@ html {
   font-size: 1.1rem;
   border-radius: var(--radius);
   background-color: var(--chart-1);
-  padding: 1rem 1.5rem; /* Área de toque maior para mobile (mínimo 44px) */
-  color: #fff; /* Forçando branco para contraste no fundo chart-1 */
+  padding: 1rem 1.5rem;
+  color: var(--primary-foreground);
   text-align: center;
   box-shadow: 0 4px 14px color-mix(in oklch, var(--chart-1) 40%, transparent);
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .btn:active {
-  transform: scale(0.96); /* Feedback tátil ao clicar no celular */
+  transform: scale(0.96);
   filter: brightness(0.9);
 }
-@media (min-width: 1024px) {
+
+.btn:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 4px;
+}
+
+/* Section Header */
+.section-header{
+ /* margin: 0 auto; */
+ text-align: center;
+ margin-bottom: 3rem;
+ padding: 1.75rem 1.25rem;
+}
+.section-header h2{
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+.section-header p{
+  font-size: 1rem;
+  text-align: start;
+  color: var(popover-foreground);
+  font-weight: 600;
+}
+.section-header .heading-border{
+  margin: 0.75rem auto;
+  margin-bottom: 2rem;
+
+}
+
+
+/* topic */
+.topics{
+
+  display: flex;
+  flex-direction: column;
+   padding: 0.5rem 0.75rem;
+  gap: 1.5rem;
+}
+.topics .topic-img img{
+   width: 100%;
+  border-radius: var(--radius);
+}
+.topic-img img:hover{
+  outline: auto;
+}
+.topics .topic-text h3{
+  margin: 14px 0;
+  font-weight: 600;
+  color: var( --secondary-foreground);
+  font-size: 1.25rem;
+}
+
+@media(min-width:700px) {
+  .topics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+  
+  }
+}
+@media(min-width:1100px) {
   .hero {
     padding: 10rem 2rem;
   }
 
   .hero-flex {
-    flex-direction: row; /* Lado a lado */
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center; /* Alinhamento vertical central */
+    align-items: center;
     text-align: left;
-    gap: 4rem;
   }
 
-  /* Alinhamento perfeito do Bloco de Texto */
   .hero-text {
     flex: 1;
-    align-items: flex-start; /* Alinha H1, P e BTN à esquerda */
     max-width: 600px;
   }
 
-  .hero-flex h1 {
-    font-size: 3.8rem;
-    margin-bottom: 1.5rem;
-    text-align: left;
-    width: 100%;
-  }
-
-  .hero-flex p {
-    font-size: 1.3rem;
-    text-align: left; /* Garante o alinhamento solicitado */
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 2.5rem;
-    max-width: 520px;
-    width: 100%;
-  }
-
+  .hero-flex h1 { font-size: 3.8rem; margin-bottom: 1.5rem; }
+  .hero-flex p { font-size: 1.3rem; max-width: 520px; }
   .hero-flex img {
     flex: 1;
-    max-width: 550px; /* Tamanho reduzido conforme sua preferência */
+    max-width: 550px;
     filter: drop-shadow(0 20px 40px rgba(0,0,0,0.08));
   }
 
   .btn {
     min-width: 250px;
-    margin: 0; /* Remove margens automáticas */
   }
+
   .btn:hover {
-  transform: translateY(-4px);
-  filter: brightness(1.1);
-  box-shadow: 0 10px 20px color-mix(in oklch, var(--chart-1) 30%, transparent);
+    transform: translateY(-4px);
+    filter: brightness(1.1);
+    box-shadow: 0 10px 20px color-mix(in oklch, var(--chart-1) 30%, transparent);
+  }
+  /* section-header */
+  .section-header{
+    margin: 1rem auto;
+max-width: 700px;
+padding-bottom: 2rem;
+  }
+  .section-header h2{
+    font-size: 2.5rem;
+  }
+  .section-header p{
+    font-size: 1.25rem;
+  }
+
+
+  
+.container {
+  max-width: 1280px;
 }
+
+.topics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
 }
+
+.topic-img {
+  width: 100%;
+  overflow: hidden;
+}
+
+}
+
+
+
+
+
+
