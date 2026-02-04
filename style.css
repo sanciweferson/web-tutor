@@ -129,12 +129,12 @@ padding: 0rem 0rem;}
 .section-header h2{
   text-align: center;
   font-weight: 700;
-  font-size: 1.75rem;
+  font-size: 2.25rem;
   margin-bottom: 0.5rem;
   color: var(--foreground);
 }
 .section-header p{
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-align: start;
   color: var(popover-foreground);
   font-weight: 600;
@@ -151,7 +151,7 @@ padding: 0rem 0rem;}
 
   display: flex;
   flex-direction: column;
-   padding: 0.5rem 0.75rem;
+   padding: 0.5rem 1.52rem;
   gap: 1.5rem;
 }
 .topics .topic-img img{
@@ -163,8 +163,8 @@ padding: 0rem 0rem;}
 }
 .topics .topic-text h3{
   margin: 14px 0;
-  font-weight: 600;
-  color: var( --secondary-foreground);
+  font-weight: 900;
+  color: var( --chart-3);
   font-size: 1.25rem;
 }
 
